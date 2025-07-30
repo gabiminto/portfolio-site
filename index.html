@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gabi Minto</title>
+  <link rel="icon" href="./images/pointer.ico" type="image/x-icon" id="favicon">
 
 </head>
 <style>
@@ -69,6 +70,10 @@
 <script>
     if (/Mobi|Android/i.test(navigator.userAgent)) {
         window.location.href = 'https://www.instagram.com/gabibag_/';
+    }
+
+    if( Math.random() < 0.1){
+      document.getElementById('favicon').href = './images/pointer_lucky.ico';
     }
 </script>
 
