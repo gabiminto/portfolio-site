@@ -6,18 +6,24 @@
 
 </head>
 <style>
+
+
     body {
         background-color: #171717;
         top: 0;
         margin: 0;
         transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        font-family: "inter", sans-serif;
+        font-size: 12px;
+        font-weight: 500;
+        color: #ffffff;
+        overscroll-behavior: none;
     }
 
     body.minimized {
         transform: scale(0.9);
         opacity: 0.6;
         filter: brightness(0.7);
-
     }
 
     #canvas {
@@ -29,13 +35,8 @@
 
     }
 
-    #left-sidebar {
-        background-color: #212121;
-        width: 14vw;
-        height: 100vh;
-        position: fixed;
-        top: 2.5rem;
-    }
+
+    /*region:tab-bar*/
 
     #tab-bar {
         background-color: #2d2d2d;
@@ -45,16 +46,17 @@
         top: 0;
         display: flex;
         align-items: start;
+        border: 1px solid #494949;
     }
 
-    .divider{
+    .divider {
         width: 1px;
         height: 100%;
         background-color: #494949;
 
     }
 
-    #plus{
+    #plus {
         width: fit-content;
         height: 2rem;
         margin-top: 0.1rem;
@@ -73,7 +75,7 @@
         border-radius: 0.2rem;
     }
 
-    .tab{
+    .tab {
         width: fit-content;
         height: 2.5rem;
         display: flex;
@@ -83,16 +85,15 @@
         transition: background-color 0.075s ease-out;
 
     }
+
     .tab:hover {
         background-color: #3a3a3a;
         cursor: pointer;
     }
 
-    .tab > span{
+    .tab > span {
         color: #ffffff;
-        font-family: "Roboto Light", sans-serif;
-        font-size: 12px;
-        font-weight: 500;
+
         margin-left: 8px;
         margin-right: 4px;
         margin-top: 1px;
@@ -109,18 +110,58 @@
         cursor: pointer;
     }
 
+    /*endregion*/
+
+    #left-sidebar {
+        background-color: #212121;
+        width: 12vw;
+        height: 100vh;
+        position: fixed;
+        top: 2.5rem;
+        border: 1px solid #494949;
+        padding-top: 0.75rem;
+    }
+
     .horizontal-divider {
         width: 100%;
         height: 1px;
-        background-color: #343434;
+        background-color: #494949;
         margin: 0.5rem 0;
     }
 
+    #fig-info {
+        margin-left: 1rem;
+    }
 
+    #fig-name {
+        font-size: 1rem;
+        font-weight: 500;
+    }
 
+    .layer-item {
+        display: flex;
+        width: 100%;
+        height: 2rem;
+        color: #ffffff;
+        font-size: 10px;
+        font-weight: 400;
+        cursor: pointer;
+        align-items: center;
+    }
 
+    .layer-dropdown {
+        margin-left: 3px;
+    }
 
-/* region:traffic-lights*/
+    .layer-icon{
+        margin-left: 2px;
+    }
+
+    .layer-name {
+        margin-left: 10px;
+    }
+
+    /* region:traffic-lights*/
     #traffic-lights {
         display: flex;
         align-items: center;
@@ -190,12 +231,30 @@
         height: 8px;
         position: absolute;
     }
-/* endregion:traffic-lights*/
+
+    /* endregion:traffic-lights*/
 </style>
 
 <body>
 <div id="left-sidebar">
+    <div id="fig-info">
+        <span id="fig-name"> Portfolio </span>
+        <br>
+        <span>Drafts</span>
+    </div>
+    <div class="horizontal-divider"></div>
+    <div id="pages">
+        <div id="pages-text">Pages</div>
+        <div class="page-item">Page 1</div>
+        <div class="page-item">Page 2</div>
+        <div class="page-item">Page 3</div>
+    </div>
 
+    <div class="horizontal-divider"></div>
+
+    <div id="Layers">
+        <layer-item name="Layer 1" type="Frame"></layer-item>
+    </div>
 </div>
 <div id="tab-bar">
     <div id="traffic-lights">
@@ -204,29 +263,28 @@
         <div id="traffic-light-green"></div>
     </div>
     <div class="divider"></div>
-    <div id="home" class="tab">
-        <img src="/images/home.svg" width="18" height="18"></img>
+    <div class="tab" id="home">
+        <img height="18" src="/images/home.svg" width="18"></img>
     </div>
     <div class="divider"></div>
     <div class="tab active">
-        <img src="/images/quill-pen.svg" width="18" height="18">
-         <span>Portfolio</span>
+        <img height="18" src="/images/quill-pen.svg" width="18">
+        <span>Portfolio</span>
     </div>
     <div class="divider"></div>
     <div class="tab" onclick="window.location.href='https://instagram.com/gabibag_'">
-        <img src="/images/Instagram_White.svg" width="14" height="14">
+        <img height="14" src="/images/Instagram_White.svg" width="14">
         <span>Instagram</span>
     </div>
     <div class="divider"></div>
     <div class="tab" onclick="window.location.href='https://github.com/gabiminto'">
-        <img src="/images/github-white.svg" width="15" height="15">
+        <img height="15" src="/images/github-white.svg" width="15">
         <span>GitHub</span>
     </div>
     <div class="divider"></div>
     <div id="plus">
         <span>+</span>
     </div>
-
 
 
 </div>
@@ -266,4 +324,48 @@
         })
 
     });
+
+    //custom html element for layer
+    class LayerItem extends HTMLElement {
+        static observedAttributes = ['name', 'visibile', 'type']
+
+        constructor() {
+            super();
+        }
+
+        connectedCallback() {
+            this.render();
+
+        }
+
+        getLayerIcon(){
+            const type = this.getAttribute('type').toLowerCase();
+            console.log(type);
+            switch (type) {
+                case 'frame':
+                    return './images/layer-icons/frame.svg';
+                    console.log("frame icon");
+                case 'group':
+                    return './images/layer-icons/group.svg';
+
+            }
+        }
+
+        static get observedAttributes() {
+            return ['name', 'visible', 'type'];
+        }
+
+        render() {
+            this.innerHTML = `  <div class="layer-item">
+                                    <img src="./images/drop-down.svg" width="16" height="16" alt="dropdown" class="layer-dropdown">
+                                    <img src="${this.getLayerIcon()}" width="10" height="10" alt="${this.getAttribute('icon')}" class="layer-icon">
+                                    <div class="layer-name">${this.getAttribute('name')}</div>
+                                </div>`
+        }
+
+    }
+
+    customElements.define('layer-item', LayerItem);
+
+
 </script>
