@@ -40,6 +40,7 @@
     min-height: 100vh;
     overflow-x: hidden;
     position: relative;
+    overscroll-behavior: none;
   }
 
 
@@ -77,6 +78,11 @@
     if( Math.random() < 0.1){
       document.getElementById('favicon').href = './images/pointer_lucky.ico';
     }
+
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+      window.location.href = 'https://www.instagram.com/gabibag_/';
+    }
+
 </script>
 
 </html>
