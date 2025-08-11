@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Gabi Minto</title>
+    <link href="./images/pointer.ico" id="favicon" rel="icon" type="image/x-icon">
+    <meta content="./images/preview.jpg" property="og:image"/>
+    <meta content="Gabi Minto" property="og:title">
+    <meta content="website" property="og:type">
+    <meta content="https://GabiMinto.com" property="og:url">
+    <link href="./all.css" rel="stylesheet">
+</head>
+<style>
+    .container {
+        display: grid;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        width: 80vw;
+        margin-left: 10vw;
+        margin-top: 5rem;
+        grid-template-columns: repeat(5, 15rem);
+        grid-template-rows: repeat(auto-fit, 15rem);
+    }
+
+    .container > picture > img {
+        width: 100%;
+        height: fit-content;
+        margin: 0.5rem;
+        border-radius: 0.5rem;
+        /*overflow: clip;*/
+    }
+</style>
+<body>
+<template id="photography-image">
+    <picture>
+        <source srcset="/images/photography-images/avif/{{name}}.avif" type="image/avif">
+        <source srcset="/images/photography-images/webp/{{name}}.webp" type="image/webp">
+        <img alt="{{name}}" class="photography-image"
+             src="/images/photography-images/jpeg/{{name}}.jpg">
+    </picture>
+</template>
+    <header>
+        <nav style="">
+            <div>
+                <a href="index.html">home</a>
+            </div>
+            <div>
+                <a href="photography.html">photography</a>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+
+    </div>
+</body>
+
+<script>
+    if( Math.random() < 0.1){
+        document.getElementById('favicon').href = './images/pointer_lucky.ico';
+    }
+
+    const photographyImages = [
+        'DSC_0094',
+        'DSC_0104',
+        'DSC_0876',
+        'DSC_0878',
+        'DSC_0943',
+        'DSC_4748',
+        'DSC_4752',
+        'DSC_8106',
+        'DSC_8167',
+        'DSC_8174',
+        'DSC_8754',
+        'DSC_8794',
+        'DSC_8956'
+    ]
+
+    const container = document.querySelector('.container');
+    const template = document.getElementById('photography-image');
+    photographyImages.forEach(name => {
+        const clone = template.content.cloneNode(true);
+        console.log(clone);
+        const picture = clone.querySelector('picture');
+        picture.querySelector('source').srcset = picture.querySelector('source').srcset.replace('{{name}}', name);
+        picture.querySelector('img').src = picture.querySelector('img').src.replace('{{name}}', name);
+        picture.querySelector('img').alt = name;
+        if (isVerticalImage(picture.querySelector('img'))) {
+            picture.querySelector('img').classList.add('vertical');
+        } else {
+            picture.querySelector('img').classList.add('horizontal');
+        }
+        container.appendChild(clone);
+    });
+
+    function isVerticalImage(image) {
+        return image.naturalHeight > image.naturalWidth;
+    }
+</script>
+</html>
