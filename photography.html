@@ -32,6 +32,12 @@
         border-radius: 0.5rem;
         /*overflow: clip;*/
     }
+    .photography-image{
+        scale: 5%;
+        translate: -50% -50%;
+
+
+    }
 </style>
 <body>
 <template id="photography-image">
@@ -52,9 +58,7 @@
             </div>
         </nav>
     </header>
-    <div class="container">
 
-    </div>
 </body>
 
 <script>
@@ -77,23 +81,60 @@
         'DSC_8794',
         'DSC_8956'
     ]
+    const initialLength = photographyImages.length;
+    let visibleImages =[]
 
-    const container = document.querySelector('.container');
+
     const template = document.getElementById('photography-image');
-    photographyImages.forEach(name => {
+
+    ;
+    document.addEventListener('click', (e) => {
+        adjustZIndex()
+
+        if (photographyImages.length === 0) {
+            let currentImage = visibleImages[0];
+
+            currentImage.style.top = e.clientY.toString() + "px";
+            currentImage.style.left = e.clientX.toString() + "px";
+            visibleImages = visibleImages.splice(1, visibleImages.length);
+            visibleImages.push(currentImage);
+            adjustZIndex();
+            currentImage.style.zIndex = (initialLength).toString();
+            return;
+        }
+        let number = Math.floor(Math.random() * photographyImages.length);
+        const name = photographyImages[number];
+        photographyImages.splice(number, 1);
+
+
+
         const clone = template.content.cloneNode(true);
         console.log(clone);
         const picture = clone.querySelector('picture');
         picture.querySelector('source').srcset = picture.querySelector('source').srcset.replace('{{name}}', name);
         picture.querySelector('img').src = picture.querySelector('img').src.replace('{{name}}', name);
-        picture.querySelector('img').alt = name;
+        picture.alt = name;
         if (isVerticalImage(picture.querySelector('img'))) {
-            picture.querySelector('img').classList.add('vertical');
+            picture.classList.add('vertical');
         } else {
-            picture.querySelector('img').classList.add('horizontal');
+            picture.classList.add('horizontal');
         }
-        container.appendChild(clone);
+        picture.style.position = 'absolute';
+        console.log(e.clientX.toString());
+        picture.style.top = e.clientY.toString() + "px";
+        picture.style.left = e.clientX.toString() + "px";
+        picture.style.zIndex = (initialLength).toString();
+        document.body.appendChild(clone);
+        visibleImages.push(picture);
     });
+
+    function adjustZIndex(){
+        visibleImages.forEach((image, index) => {
+            image.style.zIndex = (initialLength - index).toString();
+            console.log(image);
+            console.log(index);
+        });
+    }
 
     function isVerticalImage(image) {
         return image.naturalHeight > image.naturalWidth;
