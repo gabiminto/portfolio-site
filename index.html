@@ -16,29 +16,12 @@
           rel="stylesheet">
 </head>
 <style>
+    @import "all.css";
 
     h1 {
         font-family: Arial, serif;
         font-weight: normal;
         font-size: 48px;
-    }
-
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        color: black;
-        font-family: Arial, serif;
-        font-weight: normal;
-    }
-
-    body {
-        background-color: white;
-        font-family: 'Times New Roman', Times, serif;
-        min-height: 100vh;
-        overflow-x: hidden;
-        position: relative;
-        overscroll-behavior: none;
     }
 
 
@@ -53,42 +36,9 @@
         margin-left: 25vw;
     }
 
-    #details {
-        /*    bottom left corner*/
-        position: absolute;
-        bottom: 20px;
-        left: 10px;
-        font-size: 14px;
-        color: gray;
-    }
 
-    #name-title {
-        font-family: Courier, monospace;
-        font-size: 60px;
-    }
-
-    #menu > span {
-        font-family: Lexend, monospace;
-        font-weight: 300;
-
-    }
-
-    #menu {
-        cursor: pointer;
-    }
-
-    .info-text {
-        /*    centered on page, really big, mostly transparent*/
-        position: absolute;
-        font-family: Lexend, monospace;
-
-        font-size: 12vw;
-        text-align: center;
-        width: 95vw;
-        pointer-events: none;
-        opacity: 0;
-        scale: 0.99;
-        transition: opacity 0.1s ease-out, scale 0.1s ease-out;
+    @view-transition {
+        navigation: auto;
 
     }
 
@@ -110,9 +60,9 @@
     <div id="details">
         <div id="name-title"> Gabi Minto</div>
         <div id="menu">
-            <span data-id="projects-info">Projects. </span>
-            <span data-id="photography-info"> Photography. </span>
-            <span data-id="about-info">About. </span>
+            <a data-id="projects-info" href="">Projects. </a>
+            <a data-id="photography-info" href="photography.html"> Photography. </a>
+            <a data-id="about-info" data-link="about" href="">About. </a>
         </div>
     </div>
 </div>
@@ -121,8 +71,16 @@
 <script>
     document.addEventListener('DOMContentLoaded', event => {
         const menu = document.getElementById('menu');
-        const spans = menu.getElementsByTagName('span');
-        const animation = 'fade-in 0.1s ease-out forwards';
+        const spans = menu.getElementsByTagName('a');
+
+        function hideInfo(item) {
+            return event => {
+                let elementId = item.dataset.id;
+                console.log(elementId);
+                document.getElementById(elementId).style.opacity = "0";
+                document.getElementById(elementId).style.scale = "0.99";
+            };
+        }
 
         for (let i = 0; i < spans.length; i++) {
             const item = spans[i];
@@ -133,25 +91,39 @@
                 document.getElementById(elementId).style.opacity = "0.2";
                 document.getElementById(elementId).style.scale = "1";
             })
+            item.addEventListener('mousedown', event => {
+                // minimizeMode()
+                item.removeEventListener('mouseout', hideInfo);
+                // let link = item.dataset.link;
+                // if (window.location.hostname === "localhost"){
+                //     window.location.href = window.location.href.replace("index.html", link + ".html");
+                // } else {
+                //     window.location.href = window.location.href + link;
+                // }
+            })
 
         }
+
+
         for (let i = 0; i < spans.length; i++) {
             const item = spans[i];
-            item.addEventListener('mouseout', event => {
-                let elementId = item.dataset.id;
-                console.log(elementId);
-                document.getElementById(elementId).style.opacity = "0";
-                document.getElementById(elementId).style.scale = "0.99";
-            })
+            item.addEventListener('mouseout', hideInfo(item))
         }
     })
+
+    function minimizeMode(item) {
+        document.getElementById('name-title').style.opacity = "0";
+        document.getElementById('name-title').style.scale = "0.99";
+        document.getElementById('details').style.bottom = "10px";
+
+    }
 
 
     if (Math.random() < 0.1) {
         document.getElementById('favicon').href = './images/pointer_lucky.ico';
     }
 
-    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    if (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         window.location.href = 'https://www.instagram.com/gabibag_/';
     }
 

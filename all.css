@@ -1,0 +1,93 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: black;
+    font-family: Arial, serif;
+    font-weight: normal;
+}
+
+body {
+    background-color: white;
+    font-family: 'Times New Roman', Times, serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    overscroll-behavior: none;
+}
+
+#details {
+    /*    bottom left corner*/
+    position: absolute;
+    bottom: 20px;
+    left: 10px;
+    font-size: 14px;
+    color: gray;
+    transition: bottom 0.3s ease-out;
+    view-transition-name: details;
+}
+
+#name-title {
+    font-family: Courier, monospace;
+    font-size: 60px;
+    transition: opacity 0.3s ease-out, scale 0.3s ease-out;
+    transform-origin: 50% 50%;
+    view-transition-name: name-out;
+}
+
+#menu > a {
+    font-family: Lexend, monospace;
+    font-weight: 300;
+
+}
+
+#menu {
+    cursor: pointer;
+}
+
+.info-text {
+    /*    centered on page, really big, mostly transparent*/
+    position: absolute;
+    font-family: Lexend, monospace;
+
+    font-size: 12vw;
+    text-align: center;
+    width: 95vw;
+    pointer-events: none;
+    opacity: 0;
+    scale: 0.99;
+    transition: opacity 0.1s ease-out, scale 0.1s ease-out;
+}
+
+@view-transition {
+    navigation: auto;
+
+}
+
+::view-transition-group(root) {
+    animation-duration: 0.2s;
+}
+
+@keyframes scale-out {
+    to {
+        scale: 0.99;
+        opacity: 0;
+    }
+}
+
+@keyframes slide-down {
+    to {
+        bottom: 10px;
+    }
+}
+
+::view-transition-old(name-out) {
+    animation: scale-out 0.2s ease-out forwards;
+
+}
+
+::view-transition-new(details) {
+    animation: slide-down 0.2s ease-out forwards;
+}
+
+
