@@ -2,85 +2,157 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gabi Minto</title>
-  <link rel="icon" href="./images/pointer.ico" type="image/x-icon" id="favicon">
-  <meta property="og:image" content="./images/preview.jpg"/>
-  <meta property="og:title" content="Gabi Minto">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://GabiMinto.com">
-
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Gabi Minto</title>
+    <link href="./images/pointer.ico" id="favicon" rel="icon" type="image/x-icon">
+    <meta content="./images/preview.jpg" property="og:image"/>
+    <meta content="Gabi Minto" property="og:title">
+    <meta content="website" property="og:type">
+    <meta content="https://GabiMinto.com" property="og:url">
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Lexend:wght@100..900&display=swap"
+          rel="stylesheet">
 </head>
 <style>
-  @font-face {
-    font-family: 'KS Bistra';
-    src: url('./fonts/KS\ Bistra.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-  }
 
-  @font-face {
-    font-family: 'Geist Mono';
-    src: url('./fonts/GeistMonoVariableVF.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-  }
+    h1 {
+        font-family: Arial, serif;
+        font-weight: normal;
+        font-size: 48px;
+    }
 
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        color: black;
+        font-family: Arial, serif;
+        font-weight: normal;
+    }
 
-  body {
-    background-color: #eeeeee;
-    color: black;
-    font-family: 'Times New Roman', Times, serif;
-    min-height: 100vh;
-    overflow-x: hidden;
-    position: relative;
-    overscroll-behavior: none;
-  }
+    body {
+        background-color: white;
+        font-family: 'Times New Roman', Times, serif;
+        min-height: 100vh;
+        overflow-x: hidden;
+        position: relative;
+        overscroll-behavior: none;
+    }
 
 
+    .container {
+        /*Center aligned on page*/
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        width: 50vw;
+        margin-left: 25vw;
+    }
 
-  .container {
-    /*Center aligned on page*/
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    width: 50vw;
-    margin-left: 25vw;
-  }
+    #details {
+        /*    bottom left corner*/
+        position: absolute;
+        bottom: 20px;
+        left: 10px;
+        font-size: 14px;
+        color: gray;
+    }
+
+    #name-title {
+        font-family: Courier, monospace;
+        font-size: 60px;
+    }
+
+    #menu > span {
+        font-family: Lexend, monospace;
+        font-weight: 300;
+
+    }
+
+    #menu {
+        cursor: pointer;
+    }
+
+    .info-text {
+        /*    centered on page, really big, mostly transparent*/
+        position: absolute;
+        font-family: Lexend, monospace;
+
+        font-size: 12vw;
+        text-align: center;
+        width: 95vw;
+        pointer-events: none;
+        opacity: 0;
+        scale: 0.99;
+        transition: opacity 0.1s ease-out, scale 0.1s ease-out;
+
+    }
 
 
 </style>
 
 <body>
 
-  <div class="container">
-    <h1>Gabi Minto</h1>
-    <p style="margin-bottom: 10px; margin-top: 10px">under construction</p>
-    <div id="socials">
-      <img src="./images/instagram.svg" alt="Instagram" style="cursor:pointer; width: 24px; height: 24px;" onclick="window.open('https://www.instagram.com/gabibag_/', '_blank');">
-      <img src="./images/github.svg" alt="GitHub" style="cursor: pointer; width: 24px; height: 24px; margin-left: 10px;" onclick="window.open('https://www.github.com/gabiminto', '_blank');">
+<div class="container">
+    <div class="info-text" id="projects-info">
+        PROJECTS
     </div>
-
-  </div>
+    <div class="info-text" id="photography-info">
+        PHOTOGRAPHY
+    </div>
+    <div class="info-text" id="about-info">
+        ABOUT
+    </div>
+    <div id="details">
+        <div id="name-title"> Gabi Minto</div>
+        <div id="menu">
+            <span data-id="projects-info">Projects. </span>
+            <span data-id="photography-info"> Photography. </span>
+            <span data-id="about-info">About. </span>
+        </div>
+    </div>
+</div>
 </body>
 
 <script>
+    document.addEventListener('DOMContentLoaded', event => {
+        const menu = document.getElementById('menu');
+        const spans = menu.getElementsByTagName('span');
+        const animation = 'fade-in 0.1s ease-out forwards';
+
+        for (let i = 0; i < spans.length; i++) {
+            const item = spans[i];
+            console.log(item);
+            item.addEventListener('mouseover', event => {
+                let elementId = item.dataset.id;
+                console.log(elementId);
+                document.getElementById(elementId).style.opacity = "0.2";
+                document.getElementById(elementId).style.scale = "1";
+            })
+
+        }
+        for (let i = 0; i < spans.length; i++) {
+            const item = spans[i];
+            item.addEventListener('mouseout', event => {
+                let elementId = item.dataset.id;
+                console.log(elementId);
+                document.getElementById(elementId).style.opacity = "0";
+                document.getElementById(elementId).style.scale = "0.99";
+            })
+        }
+    })
 
 
-    if( Math.random() < 0.1){
-      document.getElementById('favicon').href = './images/pointer_lucky.ico';
+    if (Math.random() < 0.1) {
+        document.getElementById('favicon').href = './images/pointer_lucky.ico';
     }
 
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-      window.location.href = 'https://www.instagram.com/gabibag_/';
+        window.location.href = 'https://www.instagram.com/gabibag_/';
     }
 
 </script>
