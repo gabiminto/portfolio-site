@@ -19,20 +19,126 @@
     @import "all.css";
 
 
+    @view-transition {
+        navigation: auto;
+
+    }
+
+    ::view-transition-group(root) {
+        animation-duration: 0.2s;
+    }
+
+    @keyframes scale-out {
+        to {
+            scale: 0.99;
+            opacity: 0;
+        }
+    }
+
+    @keyframes scale-in {
+        from {
+            scale: 0.99;
+            opacity: 0;
+        }
+        to {
+            scale: 1;
+            opacity: 1;
+
+            .
+        }
+    }
+
+    @keyframes slide-down {
+        to {
+            bottom: 10px;
+        }
+    }
+
+    @keyframes slide-up {
+        to {
+            bottom: 20px;
+        }
+    }
+
+    @keyframes move-to-title {
+        from {
+            font-size: 12vw;
+            opacity: 0.05;
+
+        }
+        to {
+            font-size: 4vw;
+            /*text-align: left;*/
+            opacity: 1;
+        }
+
+    }
+
     .info-text {
         margin-left: 10px;
         font-size: 4vw;
         text-align: left;
         opacity: 1;
+        position: relative;
     }
 
-    #details {
+    #menu {
         /*    bottom left corner*/
-        bottom: 10px;
+        padding-bottom: 10px;
     }
 
     #name-title {
         opacity: 0;
+    }
+
+    #photo-container {
+        width: 99vw;
+        margin-left: 0.5vw;
+        position: relative;
+    }
+
+    ::view-transition-old(name-out) {
+        animation: scale-out 0.2s ease-out forwards;
+
+    }
+
+    ::view-transition-new(name-out) {
+        animation: scale-in 0.2s ease-out forwards;
+    }
+
+    ::view-transition-new(details) {
+        animation: slide-down 0.2s ease-out forwards;
+    }
+
+    ::view-transition-old(details) {
+        animation: slide-up 0.2s ease-out forwards;
+    }
+
+    ::view-transition-group(.info-text) {
+        animation: scale-in 0.3s ease-out forwards;
+    }
+
+    .photo-name {
+        position: relative;
+        bottom: 36px;
+        filter: invert(100%);
+        opacity: 0.5;
+        font-family: 'Courier Prime', Courier, monospace;
+    }
+
+    .photo-container {
+        transition: all 0.3s cubic-bezier(.34, .99, .65, 1.01);
+        width: 100%;
+        margin-left: 0%;
+        border-radius: 0;
+        overflow: hidden;
+    }
+
+    .photo-container:hover {
+        width: 99% !important;
+        margin-left: 0.5% !important;
+        margin-top: 0.5% !important;
+        height: 90% !important;
     }
 
 
@@ -41,7 +147,18 @@
 <div class="info-text" id="photography-info">
     PHOTOGRAPHY
 </div>
+<div style="margin-left: 10px; font-family: Lexend, sans-serif; font-weight: 250">
+    lorem ipsum
+</div>
 
+<div class="photo-container">
+    <picture style=" height:auto">
+        <source srcset="./images/photography/avif/DSC_0094.avif" type="image/avif">
+        <source srcset="./images/photography/webp/DSC_0094.webp" type="image/webp">
+        <img alt="Books" id="photography-img" src="./images/photography/jpeg/DSC_0094.jpg" width="100%">
+    </picture>
+    <h1 class="photo-name">DSC 0094 </h1>
+</div>
 <div id="details">
     <div id="name-title"> Gabi Minto</div>
     <div id="menu">
