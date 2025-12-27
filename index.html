@@ -170,8 +170,8 @@
             return event => {
                 let elementId = item.dataset.id;
                 console.log(elementId);
-                document.getElementById(elementId).style.opacity = "0";
-                document.getElementById(elementId).style.scale = "0.99";
+                document.getElementById(elementId).style.opacity = "0.3";
+                // document.getElementById(elementId).style.scale = "0.99";
             };
         }
 
@@ -181,7 +181,7 @@
             item.addEventListener('mouseover', event => {
                 let elementId = item.dataset.id;
                 console.log(elementId);
-                document.getElementById(elementId).style.opacity = "0.2";
+                document.getElementById(elementId).style.opacity = "1";
                 document.getElementById(elementId).style.scale = "1";
             })
             item.addEventListener('mousedown', event => {

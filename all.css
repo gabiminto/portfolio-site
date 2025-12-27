@@ -55,14 +55,14 @@ body {
 
 .info-text {
     /*    centered on page, really big, mostly transparent*/
-    position: absolute;
+    /*position: absolute;*/
     font-family: Lexend, monospace;
-    font-size: 12vw;
+    font-size: 6vw;
     text-align: center;
     width: 95vw;
     pointer-events: none;
-    opacity: 0;
-    scale: 0.99;
+    opacity: 0.3;
+    /*scale: 0.99;*/
     transition: opacity 0.1s ease-out, scale 0.1s ease-out;
 }
 
