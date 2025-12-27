@@ -47,8 +47,6 @@
         to {
             scale: 1;
             opacity: 1;
-
-            .
         }
     }
 
@@ -189,12 +187,6 @@
             item.addEventListener('mousedown', event => {
                 // minimizeMode()
                 item.removeEventListener('mouseout', hideInfo);
-                // let link = item.dataset.link;
-                // if (window.location.hostname === "localhost"){
-                //     window.location.href = window.location.href.replace("index.html", link + ".html");
-                // } else {
-                //     window.location.href = window.location.href + link;
-                // }
             })
 
         }
@@ -212,30 +204,7 @@
         document.getElementById('details').style.bottom = "10px";
 
     }
-
-
-    if (Math.random() < 0.1) {
-        document.getElementById('favicon').href = './images/pointer_lucky.ico';
-    }
-
-    if (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-        window.location.href = 'https://www.instagram.com/gabibag_/';
-    }
-
-    //     check if the site is on localhost
-    if (window.location.hostname === "localhost") {
-        //     change the anchor tags to point to localhost
-        const menu = document.getElementById('menu');
-        const spans = menu.getElementsByTagName('a');
-        for (let i = 0; i < spans.length; i++) {
-            const item = spans[i];
-            let link = item.dataset.link;
-            if (link) {
-                item.href = window.location.href.replace("index.html", link + ".html");
-            }
-        }
-    }
-
 </script>
+<script src="all.js"></script>
 
 </html>
