@@ -17,6 +17,7 @@ body {
     overscroll-behavior: none;
 }
 
+
 #details {
     /*bottom left corner*/
     position: sticky;
@@ -63,7 +64,10 @@ body {
     opacity: 0;
     scale: 0.99;
     transition: opacity 0.1s ease-out, scale 0.1s ease-out;
-    view-transition-class: info-text;
+}
+
+#photography-info {
+    view-transition-name: photography-title;
 }
 
 /*@view-transition {*/
@@ -118,6 +122,3 @@ body {
 /*    }*/
 
 /*}*/
-
-
-
