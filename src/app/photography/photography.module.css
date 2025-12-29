@@ -1,0 +1,51 @@
+.info-text {
+    margin-left: 10px;
+    font-size: 4vw;
+    text-align: left;
+    opacity: 1;
+    position: relative;
+    display: inline !important;
+}
+
+#photography-info {
+    view-transition-name: photography-title;
+}
+
+#menu {
+    padding-bottom: 10px;
+}
+
+#name-title {
+    opacity: 0;
+}
+
+.photo-name {
+    position: relative;
+    bottom: 36px;
+    filter: invert(100%);
+    opacity: 0.5;
+    font-family: 'Courier Prime', Courier, monospace;
+}
+
+.photo-container {
+    margin-left: 0%;
+    width: 100%;
+    margin-left: 0%;
+    border-radius: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.photo-container:hover {
+    width: 99% !important;
+    margin-left: 0.5% !important;
+    margin-top: 0.5% !important;
+    height: 90% !important;
+}
+
+.photo-description {
+    margin-left: 10px;
+    font-family: Lexend, sans-serif;
+    font-weight: 250;
+}
+
