@@ -8,6 +8,7 @@ export default function Home() {
     useFaviconRandom();
     useMobileRedirect();
 
+
     return (
         <>
             <div className="container">
@@ -15,7 +16,7 @@ export default function Home() {
                 <InfoText id="photography-info">PHOTOGRAPHY</InfoText>
                 <InfoText id="about-info">ABOUT</InfoText>
             </div>
-            <Footer/>
+            <Footer isAboutSection={true}/>
         </>
     );
 }

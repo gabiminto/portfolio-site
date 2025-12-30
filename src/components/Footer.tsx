@@ -5,11 +5,13 @@ import TransitionLink from './TransitionLink';
 
 interface FooterProps {
     hideTitle?: boolean;
+    isAboutSection?: boolean;
 }
 
-export default function Footer({hideTitle = false}: FooterProps) {
+export default function Footer({hideTitle = false, isAboutSection = false}: FooterProps) {
     const [titleOpacity, setTitleOpacity] = useState(hideTitle ? '0' : '1');
     const mouseOutListenersRef = useRef<Map<string, boolean>>(new Map());
+
 
     const handleMouseOver = (elementId: string) => {
         const element = document.getElementById(elementId);
@@ -29,7 +31,7 @@ export default function Footer({hideTitle = false}: FooterProps) {
         }
     };
 
-    const handleMouseDown = (elementId: string) => {
+    /*const handleMouseDown = (elementId: string) => {
         // Disable mouseout listener for this element
         mouseOutListenersRef.current.set(elementId, false);
 
@@ -41,17 +43,30 @@ export default function Footer({hideTitle = false}: FooterProps) {
             nameTitle.style.scale = '0.99';
         }
         if (details) {
-            details.style.bottom = '-10px';
+            details.style.bottom = '10px';
         }
-    };
+    };*/
 
     useEffect(() => {
-        setTitleOpacity(hideTitle ? '0' : '1');
+        // setTitleOpacity(hideTitle ? '0' : '1');
         // Initialize all mouseout listeners as active
         mouseOutListenersRef.current.set('projects-info', true);
         mouseOutListenersRef.current.set('photography-info', true);
         mouseOutListenersRef.current.set('about-info', true);
-    }, [hideTitle]);
+
+        // Apply minimized state on mount if not in about section
+        if (!isAboutSection) {
+            const nameTitle = document.getElementById('name-title');
+            const details = document.getElementById('details');
+            if (nameTitle) {
+                nameTitle.style.opacity = '0';
+                nameTitle.style.scale = '0.99';
+            }
+            if (details) {
+                details.style.bottom = '-10px';
+            }
+        }
+    }, [hideTitle, isAboutSection]);
 
     return (
         <div id="details">
@@ -64,7 +79,7 @@ export default function Footer({hideTitle = false}: FooterProps) {
                     dataId="projects-info"
                     onMouseOver={() => handleMouseOver('projects-info')}
                     onMouseOut={() => handleMouseOut('projects-info')}
-                    onMouseDown={() => handleMouseDown('projects-info')}
+                    // onMouseDown={() => handleMouseDown('projects-info')}
                 >
                     Projects.{' '}
                 </TransitionLink>
@@ -73,7 +88,7 @@ export default function Footer({hideTitle = false}: FooterProps) {
                     dataId="photography-info"
                     onMouseOver={() => handleMouseOver('photography-info')}
                     onMouseOut={() => handleMouseOut('photography-info')}
-                    onMouseDown={() => handleMouseDown('photography-info')}
+                    // onMouseDown={() => handleMouseDown('photography-info')}
                 >
                     Photography.{' '}
                 </TransitionLink>
@@ -83,7 +98,7 @@ export default function Footer({hideTitle = false}: FooterProps) {
                     dataLink="about"
                     onMouseOver={() => handleMouseOver('about-info')}
                     onMouseOut={() => handleMouseOut('about-info')}
-                    onMouseDown={() => handleMouseDown('about-info')}
+                    // onMouseDown={() => handleMouseDown('about-info')}
                 >
                     About.{' '}
                 </TransitionLink>
