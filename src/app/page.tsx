@@ -10,11 +10,14 @@ export default function Home() {
 
 
     return (
+
+
         <>
             <div className="container">
                 <InfoText id="projects-info">PROJECTS</InfoText>
                 <InfoText id="photography-info">PHOTOGRAPHY</InfoText>
                 <InfoText id="about-info">ABOUT</InfoText>
+                <InfoText id="writing-info">WRITING</InfoText>
             </div>
             <Footer isAboutSection={true}/>
         </>

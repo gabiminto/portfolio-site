@@ -102,6 +102,15 @@ export default function Footer({hideTitle = false, isAboutSection = false}: Foot
                 >
                     About.{' '}
                 </TransitionLink>
+                <TransitionLink
+                    href="/writing"
+                    dataId="writing-info"
+                    dataLink="writing"
+                    onMouseOver={() => handleMouseOver('writing-info')}
+                    onMouseOut={() => handleMouseOut('writing-info')}
+                >Writing.{' '}
+                </TransitionLink>
+
             </div>
         </div>
     );

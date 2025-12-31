@@ -61,20 +61,20 @@ body {
 #menu > a {
     font-family: Lexend, monospace;
     font-weight: 300;
-    text-decoration: none;
+    text-decoration: underline;
     color: black;
 }
 
 #menu {
     cursor: pointer;
     background: white;
-    padding-bottom: 20px;
+    padding-bottom: 15px;
     padding-left: 10px;
 }
 
 .info-text {
     font-family: Lexend, monospace;
-    font-size: 6vw;
+    font-size: 4.7vw;
     text-align: center;
     width: 95vw;
     pointer-events: none;
