@@ -22,6 +22,7 @@ const nextConfig: NextConfig = {
     experimental: {
         // Enable turbopack in development (already enabled via --turbopack flag)
         // This is automatically detected when using npm run dev with turbopack
+        viewTransition: true,
     },
 };
 
