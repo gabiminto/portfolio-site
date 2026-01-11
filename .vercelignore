@@ -1,0 +1,34 @@
+# Dependencies
+node_modules
+
+# Development files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Testing
+coverage
+
+# Environment files (add your env files to Vercel dashboard instead)
+.env*.local
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+.git
+.gitignore
+
+# README and docs (optional - uncomment if you don't want them deployed)
+# README.md
+
