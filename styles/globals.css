@@ -1,15 +1,13 @@
 @import "tailwindcss";
 
 :root {
-    --background: #ffffff;
+    --background: #F0F0F0;
     --foreground: #171717;
 }
 
 @theme inline {
     --color-background: var(--background);
     --color-foreground: var(--foreground);
-    --font-sans: var(--font-geist-sans);
-    --font-mono: var(--font-geist-mono);
 }
 
 
@@ -23,5 +21,13 @@ body {
 .nav-link {
     text-decoration: underline;
     color: black;
-    /*font-family: Inter, sans-serif;*/
+    font-family: Lexend, sans-serif;
+    font-size: 1.3vw;
+
+    /*letter-spacing: 0.2px;*/
 }
+
+.font-courier {
+    font-family: var(--font-bitcount-single), monospace;
+}
+

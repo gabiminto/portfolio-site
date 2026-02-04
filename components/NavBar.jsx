@@ -3,10 +3,13 @@ import React from 'react';
 import Link from 'next/link';
 
 
-const NavBar = () => {
+export default function NavBar({showName = true}) {
     return (
         <div className="absolute bottom-1 left-0 w-full z-50">
             <div className="container mx-3 ">
+                {showName &&
+                    <div className="-my-1 text-4xl -mx-1 font-courier">Gabi Minto</div>
+                }
                 <div className="">
                     <Link href="/" className="nav-link">Home.</Link>
                     <span> </span>
@@ -19,5 +22,3 @@ const NavBar = () => {
         </div>
     );
 };
-
-export default NavBar;

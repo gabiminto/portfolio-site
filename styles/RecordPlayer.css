@@ -1,0 +1,137 @@
+.record-player-frame {
+    width: 34vw;
+    height: 40vw;
+    background-color: transparent;
+    border: dotted 2px #000;
+    position: relative;
+}
+
+.record {
+    width: 60%;
+    aspect-ratio: 1 / 1;
+    background-color: transparent;
+    position: relative;
+    top: 2%;
+    left: 2%;
+    /*display: grid;*/
+    place-items: center;
+}
+
+.record-rings {
+    width: 100%;
+    height: 100%;
+}
+
+.record-rings circle {
+    fill: none;
+    stroke: #333;
+    stroke-width: 1;
+    vector-effect: non-scaling-stroke;
+}
+
+/* Outer ring with gap at top */
+.outer-ring {
+    stroke-dasharray: 30%, 3%, 3%, 12%;
+    stroke-dashoffset: 0;
+}
+
+/* Inner dashed ring */
+.inner-ring {
+    stroke-dasharray: 3%, 7%, 3%, 3%;
+    stroke-dashoffset: 0;
+}
+
+/* Just the placement of the entire arm */
+.record-arm {
+    position: absolute;
+    width: 10%;
+    height: 60%;
+    right: 10%;
+    top: 1%;
+    z-index: 10;
+    /*border:black 2px solid;*/
+
+}
+
+.arm-base {
+    position: absolute;
+    width: 100%;
+    height: 30%;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: transparent;
+    border: solid 1px #000;
+    z-index: 1;
+}
+
+.arm-neck {
+    position: absolute;
+    width: 15%;
+    height: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #F0F0F0;
+    border: solid 1px #000;
+    z-index: 1;
+}
+
+.arm-head {
+    position: absolute;
+    width: 50%;
+    height: 15%;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #F0F0F0;
+    border: solid 1px #000;
+    z-index: 2;
+}
+
+.arm-needle {
+    position: absolute;
+    width: 10%;
+    height: 10%;
+    bottom: -7%;
+    left: 80%;
+    transform: translateX(-50%) translateY(-50%) rotate(90deg);
+    background-color: transparent;
+    border: solid 1px #000;
+}
+
+.arm-base-attachment {
+    position: absolute;
+    width: 40%;
+    aspect-ratio: 1 / 1;
+    top: 25%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    background-color: #F0F0F0;
+    border: solid 1px #000;
+    border-radius: 100%;
+    z-index: 15;
+}
+
+.record-player-base {
+    position: absolute;
+    width: 100%;
+    height: 30%;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #E4E4E4;
+    /*border: solid 2px #000;*/
+}
+
+.player-barcode {
+    position: absolute;
+    width: 40%;
+    height: 10%;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-libre-barcode), monospace;
+    text-align: center;
+    font-size: 1vw;
+
+}

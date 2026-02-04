@@ -1,6 +1,6 @@
 import type {Metadata} from "next";
-import {Geist, Geist_Mono} from "next/font/google";
-import "./globals.css";
+import {Bitcount_Single, Geist, Geist_Mono, Lexend_Zetta, Libre_Barcode_128} from "next/font/google";
+import "../styles/globals.css";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -11,6 +11,23 @@ const geistMono = Geist_Mono({
     variable: "--font-geist-mono",
     subsets: ["latin"],
 });
+
+const lexendZetta = Lexend_Zetta({
+    variable: "--font-lexend-zetta",
+    subsets: ["latin"],
+});
+
+const bitcountSingle = Bitcount_Single({
+    variable: "--font-bitcount-single",
+    subsets: ["latin"],
+});
+
+const libreBarcode39 = Libre_Barcode_128({
+    variable: "--font-libre-barcode",
+    subsets: ["latin"],
+    weight: "400",
+});
+
 
 
 export const metadata: Metadata = {
@@ -26,7 +43,7 @@ export default function RootLayout({
     return (
         <html lang="en">
         <body
-            className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+            className={`${bitcountSingle.variable} ${lexendZetta.variable} ${libreBarcode39.variable} antialiased`}
         >
         {children}
         </body>

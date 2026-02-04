@@ -1,0 +1,1 @@
+When suggesting completions for designs and styles, please use designs from the design folder.
