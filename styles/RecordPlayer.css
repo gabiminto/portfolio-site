@@ -174,7 +174,7 @@
     border-bottom-right-radius: 100%;
     margin-top: 6%;
     transition: 0.1s;
-    transition-delay: 0.05s;
+    transition-delay: 3s;
     cursor: pointer;
 }
 

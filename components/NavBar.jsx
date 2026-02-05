@@ -18,9 +18,9 @@ export default function NavBar({showName = true}) {
                 <div className="">
                     <Link href="/" className="nav-link">Home.</Link>
                     <span> </span>
-                    <Link href="/about" className="nav-link">About.</Link>
-                    <span> </span>
                     <Link href="/contact" className="nav-link">Contact.</Link>
+                    <span> </span>
+                    <Link href="/works" className="nav-link">Works.</Link>
                     <span> </span>
                 </div>
             </div>
