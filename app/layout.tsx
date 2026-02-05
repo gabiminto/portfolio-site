@@ -1,5 +1,5 @@
 import type {Metadata} from "next";
-import {Hanken_Grotesk, Lexend_Zetta, Libre_Barcode_128, Roboto_Mono} from "next/font/google";
+import {Doto, Hanken_Grotesk, Lexend_Zetta, Libre_Barcode_128, Roboto_Mono} from "next/font/google";
 import {Analytics} from "@vercel/analytics/next"
 import "../styles/globals.css";
 
@@ -19,6 +19,12 @@ const RobotoMono = Roboto_Mono({
     variable: "--font-roboto-mono",
     subsets: ["latin"],
     weight: ["400", "700"],
+});
+
+const DotoFont = Doto({
+    variable: "--font-doto",
+    subsets: ["latin"],
+    weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
 
@@ -43,7 +49,7 @@ export default function RootLayout({
     return (
         <html lang="en">
         <body
-            className={`${HankenGrotesk.variable} ${lexendZetta.variable} ${libreBarcode39.variable} ${RobotoMono.variable} antialiased overscroll-none overflow-hidden`}
+            className={`${HankenGrotesk.variable} ${lexendZetta.variable} ${libreBarcode39.variable} ${RobotoMono.variable} ${DotoFont.variable} antialiased overscroll-none overflow-hidden`}
         >
         <Analytics/>
         {children}
