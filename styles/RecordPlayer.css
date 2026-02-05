@@ -33,12 +33,26 @@
 .outer-ring {
     stroke-dasharray: 30%, 3%, 3%, 12%;
     stroke-dashoffset: 0;
+    transform-origin: center;
+    animation: rotate-clockwise 60s linear infinite;
+    animation-play-state: paused;
+}
+
+.outer-ring.playing {
+    animation-play-state: running;
 }
 
 /* Inner dashed ring */
 .inner-ring {
     stroke-dasharray: 3%, 7%, 3%, 3%;
     stroke-dashoffset: 0;
+    transform-origin: center;
+    animation: rotate-counterclockwise 60s linear infinite;
+    animation-play-state: paused;
+}
+
+.inner-ring.playing {
+    animation-play-state: running;
 }
 
 /* Just the placement of the entire arm */
@@ -181,3 +195,31 @@
     border: dotted 1.5px #848484;
     transition-delay: 0s;
 }
+
+@keyframes rotate-disc {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotate-clockwise {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotate-counterclockwise {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(-360deg);
+    }
+}
+

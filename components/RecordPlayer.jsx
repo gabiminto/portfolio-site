@@ -82,8 +82,14 @@ export default function RecordPlayer() {
     };
 
     const playNextSong = () => {
-        // Get the next song in the list
-        currentSongIndexRef.current = (currentSongIndexRef.current + 1) % songs.length;
+        // First time: pick a random starting song
+        // Subsequent times: cycle to the next song
+        if (currentSongIndexRef.current === -1) {
+            currentSongIndexRef.current = Math.floor(Math.random() * songs.length);
+        } else {
+            currentSongIndexRef.current = (currentSongIndexRef.current + 1) % songs.length;
+        }
+
         const selectedSong = songs[currentSongIndexRef.current];
 
         // Save the selected song so it can loop
@@ -121,13 +127,13 @@ export default function RecordPlayer() {
                         cx="100"
                         cy="100"
                         r="95"
-                        className="outer-ring"
+                        className={`outer-ring ${isPlaying ? 'playing' : ''}`}
                     />
                     <circle
                         cx="100"
                         cy="100"
                         r="75"
-                        className="inner-ring"
+                        className={`inner-ring ${isPlaying ? 'playing' : ''}`}
                     />
                 </svg>
             </div>
