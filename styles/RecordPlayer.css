@@ -1,9 +1,22 @@
 .record-player-frame {
-    width: 34vw;
-    height: 40vw;
-    background-color: transparent;
-    border: dotted 2px #000;
+    width: 43vw;
+    height: 28vw;
+    background-color: #F0F0F0;
+    border: dashed 2px #000;
     position: relative;
+}
+
+.record-player-frame::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 4%;
+    left: 4%;
+    outline: dashed 2px #000;
+    pointer-events: none;
+    background: #000;
+    z-index: -1;
 }
 
 .record {
@@ -11,10 +24,10 @@
     aspect-ratio: 1 / 1;
     background-color: transparent;
     position: relative;
-    top: 2%;
+    top: 50%;
     left: 2%;
-    /*display: grid;*/
-    place-items: center;
+    transform: translateY(-50%);
+    /*place-items: center;*/
 }
 
 .record-rings {
@@ -60,58 +73,54 @@
     position: absolute;
     width: 10%;
     height: 60%;
-    right: 10%;
+    right: 37%;
     top: 1%;
     z-index: 10;
     /*border:black 2px solid;*/
+    transition: 0.2s;
 
 }
 
-.arm-base {
+
+.arm-container {
     position: absolute;
     width: 100%;
-    height: 30%;
-    top: 10%;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: transparent;
-    border: solid 1px #000;
-    z-index: 1;
+    height: 100%;
+    transform-origin: center;
+    transition: transform 0.2s ease-out;
 }
+
+.arm-container.playing {
+    transform: scale(0.97);
+}
+
 
 .arm-neck {
     position: absolute;
     width: 15%;
-    height: 100%;
+    height: 80%;
     left: 50%;
+    top: 10%;
     transform: translateX(-50%);
     background-color: #F0F0F0;
-    border: solid 1px #000;
+    border: solid 1px #F83F09;
     z-index: 1;
 }
 
 .arm-head {
     position: absolute;
-    width: 50%;
+    width: 15%;
     height: 15%;
-    bottom: 0;
-    left: 50%;
+    bottom: -4%;
+    left: 44%;
     transform: translateX(-50%);
+    rotate: 10deg;
     background-color: #F0F0F0;
-    border: solid 1px #000;
+    border: solid 1px #F83F09;
+    border-top: none;
     z-index: 2;
 }
 
-.arm-needle {
-    position: absolute;
-    width: 10%;
-    height: 10%;
-    bottom: -7%;
-    left: 80%;
-    transform: translateX(-50%) translateY(-50%) rotate(90deg);
-    background-color: transparent;
-    border: solid 1px #000;
-}
 
 .arm-base-attachment {
     position: absolute;
@@ -126,15 +135,58 @@
     z-index: 15;
 }
 
+.arm-base-attachment-outline {
+    position: absolute;
+    width: 70%;
+    aspect-ratio: 1 / 1;
+    top: 25%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    background-color: #F0F0F0;
+    border: dotted 2px #000;
+    border-radius: 100%;
+    z-index: 0;
+}
 .record-player-base {
     position: absolute;
-    width: 100%;
-    height: 30%;
+    width: 35%;
+    height: 100%;
     bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    right: 0;
+    border-left: solid 0.5px #000;
+    /*background-image: url("./images/noise.png");*/
+}
+
+.record-player-speaker {
+    position: absolute;
+    width: 97%;
+    height: 34%;
+    bottom: 0.75%;
+    right: 1.5%;
     background-color: #E4E4E4;
-    /*border: solid 2px #000;*/
+    background-image: url("/images/noise.png");
+    /*background-blend-mode: screen;*/
+    background-repeat: repeat;
+    background-size: 40%;
+    border: solid 0.5px #000;
+}
+
+.record-player-speaker {
+    transition: transform 0s;
+}
+
+.record-player-speaker-border {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 35.5%;
+    bottom: 0;
+    right: 0;
+    background-color: transparent;
+    border: solid 0.5px #000;
+    border-left: none;
+
 }
 
 .player-barcode {
@@ -196,6 +248,78 @@
     transition-delay: 0s;
 }
 
+.record-grill {
+    position: absolute;
+    width: 100%;
+    height: 0.7%;
+    background-color: black;
+    /*top: 49.5%;*/
+    left: 0;
+}
+
+.grill-1 {
+    top: 13.2%;
+}
+
+.grill-2 {
+    top: 26.4%;
+}
+
+.grill-3 {
+    top: 39.6%;
+}
+
+.grill-4 {
+    top: 52.8%;
+}
+
+.track-name {
+    position: absolute;
+    width: 100%;
+    top: 13.2%;
+    height: 13.2%;
+    left: 0;
+    font-family: var(--font-doto), sans-serif;
+    font-weight: 800;
+    font-size: 1.5vw;
+    color: #F83F09;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    pointer-events: none;
+}
+
+.track-name.blinking {
+    animation: blink 1.5s linear;
+}
+
+.record-player-power-button {
+    position: absolute;
+    width: 8%;
+    aspect-ratio: 1 / 1;
+    bottom: 3%;
+    left: 3%;
+    background-color: #F0F0F0;
+    border: solid 1px #000;
+    border-radius: 100%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5vw;
+    font-weight: bold;
+    user-select: none;
+    outline: dashed 1px #000;
+    outline-offset: -10px;
+    transition: 1s;
+}
+
+.record-player-power-button.on {
+    outline: dashed 1px #F83F09;
+}
+
+
 @keyframes rotate-disc {
     from {
         transform: rotate(0deg);
@@ -220,6 +344,15 @@
     }
     to {
         transform: rotate(-360deg);
+    }
+}
+
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
     }
 }
 
