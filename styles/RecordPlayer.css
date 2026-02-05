@@ -135,3 +135,44 @@
     font-size: 1vw;
 
 }
+
+.player-controls {
+    position: absolute;
+    width: 10%;
+    /*height: 15%;*/
+    top: 20%;
+    right: 0%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.control {
+    width: 50%;
+    aspect-ratio: 1 / 1;
+    background-color: transparent;
+    border: dotted 1.5px #000;
+
+    border-top-right-radius: 100%;
+    border-bottom-right-radius: 100%;
+    margin-top: 6%;
+    transition: 0.1s;
+    transition-delay: 0.05s;
+}
+
+.control-top {
+    rotate: -90deg;
+}
+
+.control-bottom {
+    rotate: 90deg;
+}
+
+.control:active {
+    /*background-color: #C0C0C0;*/
+    border: dotted 1.5px #848484;
+    transition-delay: 0s;
+}

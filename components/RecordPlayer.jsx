@@ -34,6 +34,11 @@ export default function RecordPlayer() {
                 <div className="player-barcode">
                     fuckicefuckice
                 </div>
+                <div className="player-controls">
+                    <div className="control control-top"></div>
+                    <div className="control control-middle"></div>
+                    <div className="control control-bottom"></div>
+                </div>
             </div>
 
 
