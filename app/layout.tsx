@@ -1,26 +1,25 @@
 import type {Metadata} from "next";
-import {Bitcount_Single, Geist, Geist_Mono, Lexend_Zetta, Libre_Barcode_128} from "next/font/google";
+import {Hanken_Grotesk, Lexend_Zetta, Libre_Barcode_128, Roboto_Mono} from "next/font/google";
 import "../styles/globals.css";
 
-const geistSans = Geist({
-    variable: "--font-geist-sans",
-    subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-    variable: "--font-geist-mono",
-    subsets: ["latin"],
-});
 
 const lexendZetta = Lexend_Zetta({
     variable: "--font-lexend-zetta",
     subsets: ["latin"],
 });
 
-const bitcountSingle = Bitcount_Single({
-    variable: "--font-bitcount-single",
+const HankenGrotesk = Hanken_Grotesk({
+    variable: "--font-hanken-grotesk",
     subsets: ["latin"],
+    weight: ["200", "300", "400", "500", "600", "700"],
 });
+
+const RobotoMono = Roboto_Mono({
+    variable: "--font-roboto-mono",
+    subsets: ["latin"],
+    weight: ["400", "700"],
+});
+
 
 const libreBarcode39 = Libre_Barcode_128({
     variable: "--font-libre-barcode",
@@ -43,7 +42,7 @@ export default function RootLayout({
     return (
         <html lang="en">
         <body
-            className={`${bitcountSingle.variable} ${lexendZetta.variable} ${libreBarcode39.variable} antialiased`}
+            className={`${HankenGrotesk.variable} ${lexendZetta.variable} ${libreBarcode39.variable} ${RobotoMono.variable} antialiased overscroll-none overflow-hidden`}
         >
         {children}
         </body>
