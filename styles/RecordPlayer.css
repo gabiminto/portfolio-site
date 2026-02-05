@@ -161,6 +161,11 @@
     margin-top: 6%;
     transition: 0.1s;
     transition-delay: 0.05s;
+    cursor: pointer;
+}
+
+.control:hover {
+    border: dotted 1.5px #555;
 }
 
 .control-top {
